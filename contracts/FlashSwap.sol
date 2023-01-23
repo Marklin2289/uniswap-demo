@@ -14,16 +14,13 @@ import "@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol";
 
 /// @title Flash contract implementation
 /// @notice An example contract using the Uniswap V3 flash function
-contract PairFlash is
-    IUniswapV3FlashCallback,
-    PeripheryImmutableState,
-    PeripheryPayments
-{
+contract PairFlash is IUniswapV3FlashCallback, PeripheryPayments {
     using LowGasSafeMath for uint256;
     using LowGasSafeMath for int256;
 
     ISwapRouter public immutable swapRouter;
 
+    // Our constructor hardcodes the address of the V3 router, factory and weth9, the ERC-20 warpper for ether.
     constructor(
         ISwapRouter _swapRouter,
         address _factory,
